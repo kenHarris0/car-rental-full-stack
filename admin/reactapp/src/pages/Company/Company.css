@@ -1,0 +1,56 @@
+.company{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 50px;
+}
+
+.company h1{
+    font-size: 50px;
+    font-family: 'poppins', sans-serif;
+    margin-bottom: 20px;
+}
+
+.company h2{
+    font-size: 90px;
+    font-family: 'poppins', sans-serif;
+    margin-bottom: 40px;
+   
+}
+.company span{
+ background: linear-gradient(to right,rgb(177, 123, 21),rgb(152, 61, 4));
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.companyform{
+    width: 40%;
+    height: 40vh;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.companyform input{
+    width: 80%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgb(4, 35, 61);
+    color: white;
+}
+.companyform button{
+    width: 50%;
+    height: 40px;
+    background-color: rgb(182, 122, 12);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}

@@ -1,0 +1,56 @@
+.cars{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 50px;
+}
+
+.cars h1{
+    font-size: 80px;
+    font-family: 'poppins',sans-serif;
+    background: linear-gradient(to right,rgb(217, 157, 46),rgb(188, 89, 2));
+    background-clip: border-box;
+-webkit-background-clip: text;
+    -webkit-text-fill-color:transparent ;
+}
+
+.carform{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 500px;
+   border: 1px solid rgb(255, 255, 255,0.2);
+    margin-top: 30px;
+}
+
+.carform input{
+    width: 80%;
+    height: 44px;
+    color: white;
+    margin-bottom: 15px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.carform label img{
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    
+}
+
+.carform button{
+    width: 50%;
+    height: 40px;
+    background-color: rgb(162, 111, 15);
+    color: white;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
