@@ -26,6 +26,11 @@ const Home = () => {
         <h1>Add Cars</h1>
       </div>}
 
+      {!isadmin && <div className="part1" onClick={()=>navigator('/carlist')}>
+        <h1>Company's Cars</h1>
+      </div>}
+
+
       {isadmin && <div className="part2" onClick={()=>navigator('/company')}>
         <h1>Add Company</h1>
       </div>}

@@ -8,6 +8,8 @@ import Company from './pages/Company/Company'
 import Cars from './pages/Cars/Cars'
 import Login from './pages/Login/Login'
 import Dashboard from './pages/Adminboard/Dashboard'
+import Carlist from './pages/Carslist/Carlist'
+import Admincarslist from './pages/Admincarlist/Admincarslist'
 
 const App = () => {
 
@@ -25,6 +27,8 @@ const [clicklogin,setclicklogin]=useState(false);
         <Route path='/company' element={<Company/>}/>
         <Route path='/cars' element={<Cars/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
+        <Route path='/carlist' element={<Carlist/>}/>
+        <Route path="/listcars/:id" element={<Admincarslist />} /> 
       </Routes>
       
     </div>

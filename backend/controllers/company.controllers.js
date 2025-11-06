@@ -46,4 +46,14 @@ const getallcompany=async(req,res)=>{
     }
 }
 
-module.exports={createCompany,removeCompany,getallcompany}
+const getCompanycars=async(req,res)=>{
+    const {id}=req.body
+    try{
+const carlist=await Company.findById(id)
+res.json({success:true,payload:carlist.cars})
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+module.exports={createCompany,removeCompany,getallcompany,getCompanycars}

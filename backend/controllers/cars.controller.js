@@ -32,7 +32,31 @@ const createCar = async (req, res) => {
 }
 
 const removeCar = async (req, res) => {
+  const {id,companyId}=req.body
+
+  try{
+      const car=await Car.findByIdAndDelete(id)
+       await Company.findByIdAndUpdate(companyId, {
+      $pull: { cars: id },
+    });
+      res.json({success:true,message:"car removed"})
+
+  }
+   catch(err){
+      console.log(err)
+    }
 
 }
 
-module.exports = { createCar, removeCar }
+const getallcars=async(req,res)=>{
+  try{
+    const cars=await Car.find()
+    res.json({success:true,payload:cars})
+   
+  }
+   catch(err){
+      console.log(err)
+    }
+}
+
+module.exports = { createCar, removeCar ,getallcars}

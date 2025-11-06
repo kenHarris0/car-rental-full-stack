@@ -63,9 +63,22 @@ const fetchcompanydata=async()=>{
 
 }
 
+//getallcars
 
+const [cars,setcars]=useState([])
+const fetchcardata=async()=>{
+  try{
+    const response=await axios.get(url+'/car/getall',{withCredentials:true})
+    if(response.data.success){
+      setcars(response.data.payload)
+      
+    }
+  }
+  catch(err){
+    console.log(err)
+  }
 
-
+}
 
 
 
@@ -90,7 +103,8 @@ const value={
     url,
     loggedin,setloggedin,checkauth,
     userdata,fetchuserdata,setuserdata,
-    companies,setallcompanies,fetchcompanydata
+    companies,setallcompanies,fetchcompanydata,
+    cars,setcars,fetchcardata
 }
 
   return (
