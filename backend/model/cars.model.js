@@ -6,6 +6,7 @@ const schema=new mongoose.Schema({
     year:{type:String},
     image:{type:String},
     rent:{type:Number,required:true},
+    Bookeduntil:{type:Date,default:null},
     available:{type:Boolean,default:true},
     user:{type:mongoose.Schema.Types.ObjectId,ref:'user'}
     ,

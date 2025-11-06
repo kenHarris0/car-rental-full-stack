@@ -1,8 +1,8 @@
 const User=require('../model/user.model')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
-
-
+const Stripe=require('stripe')
+const Car=require('../model/cars.model')
 const login=async(req,res)=>{
     const {email,password}=req.body
     try{
@@ -97,5 +97,74 @@ try{
     }
 
 }
+const handlepayment=async(req,res)=>{
+    const {price,id,hours}=req.body
+    const stripe=new Stripe(process.env.STRIPE_SECRET)
+    const frontendurl='http://localhost:5173'
+    try{
+    const session=await stripe.checkout.sessions.create({
+        payment_method_types:['card'],
+        line_items:[{
+            price_data:{
+                currency:'inr',
+                product_data:{
+                    name:'car booking'
+                },
+                unit_amount:price*100
 
-module.exports={login,register,logout,getuserbyid,checkauth}
+            },
+            quantity:1
+
+        }],
+        mode:'payment',
+        success_url:`${frontendurl}/checkout?success=true&id=${id}&hours=${hours}`,
+        cancel_url:`${frontendurl}/checkout?success=false&id=${id}`,
+        
+
+    })
+    res.json({success:true,sessionurl:session.url})
+}
+  catch(err){
+        console.log(err)
+    }
+
+}
+const addtobooking = async (req, res) => {
+  const { id, hours } = req.body;
+  const userId = req.userId;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) return res.json({ success: false, message: "User not found" });
+
+    const car = await Car.findById(id);
+    if (!car) return res.json({ success: false, message: "Car not found" });
+
+    if (!car.available) {
+      return res.json({ success: false, message: "Car is already booked" });
+    }
+
+    const booking = {
+      carId: id,
+      hours,
+      bookedAt: new Date(),
+    };
+
+    user.bookings.push(booking);
+    await user.save();
+
+    car.available = false;
+    car.Bookeduntil = new Date(Date.now() + hours * 60 * 60 * 1000); 
+    await car.save();
+
+    res.json({ success: true, message: "Booking added successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};
+
+
+
+
+module.exports={login,register,logout,getuserbyid,checkauth,handlepayment,addtobooking}

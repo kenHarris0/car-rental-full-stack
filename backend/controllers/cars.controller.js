@@ -59,4 +59,26 @@ const getallcars=async(req,res)=>{
     }
 }
 
-module.exports = { createCar, removeCar ,getallcars}
+const checkreturn=async(req,res)=>{
+  const {id}=req.body
+  try{
+   const car=await Car.findById(id)
+   const currdate=new Date()
+   if(car.Bookeduntil && car.Bookeduntil<currdate){
+    car.Bookeduntil=null
+    car.available=true
+    await car.save()
+   }
+
+   res.json({success:true,message:'updated'})
+
+
+   
+  }
+   catch(err){
+      console.log(err)
+    }
+}
+
+
+module.exports = { createCar, removeCar ,getallcars,checkreturn}
