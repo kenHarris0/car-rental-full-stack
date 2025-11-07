@@ -8,7 +8,7 @@ const Home = () => {
 
   const {url,userdata,checkauth,fetchuserdata,loggedin,companies,fetchcompanydata,cars,fetchcardata}=useContext(userContext)
   const navigator=useNavigate()
-
+  const[filter,setfilter]=useState("")
 
 
 useEffect(()=>{
@@ -30,12 +30,12 @@ useEffect(()=>{
       </div>
 
       <div className="search">
-        <input type="text" placeholder='Search cars' />
+        <input type="text" placeholder='Search cars' value={filter} onChange={(e)=>setfilter(e.target.value)} />
       </div>
 
 
       <div className="allcars">
-        {cars.map(car=>{
+        {cars.filter(car=>car.name.toLowerCase().includes(filter.toLowerCase())).map(car=>{
         return(
             <div className={`carcard ${car.available?'active':""}`} onClick={()=>navigator(`/car/${car._id}`)}>
                 <img src={`http://localhost:5000/carimg/${car.image}`} alt="" />
@@ -48,7 +48,7 @@ useEffect(()=>{
                 
             </div>
         )
-    })}
+    }) }
       </div>
 
      
