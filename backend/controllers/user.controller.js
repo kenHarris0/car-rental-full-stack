@@ -164,7 +164,18 @@ const addtobooking = async (req, res) => {
   }
 };
 
+const getallbookings=async(req,res)=>{
+    try{
+        const id=req.userId
+        const user=await User.findById(id)
+        res.json({success:true,payload:user.bookings})
+
+    }
+    catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+}
 
 
-
-module.exports={login,register,logout,getuserbyid,checkauth,handlepayment,addtobooking}
+module.exports={login,register,logout,getuserbyid,checkauth,handlepayment,addtobooking,getallbookings}

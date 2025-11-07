@@ -1,0 +1,42 @@
+.bookingpg {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+}
+
+.indibooking {
+  width: 280px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: 0.3s;
+  color: black;
+}
+
+.indibooking:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    background: none;
+    color: white;
+}
+
+.indibooking h2 {
+  margin-bottom: 8px;
+  background: none;
+}
+
+.indibooking p {
+  margin: 5px 0;
+    background: none;
+  color: #444;
+}
+strong{
+  background: none;
+}
+
+.active{
+  border: 2px solid greenyellow;
+}
